@@ -12,9 +12,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('job', JobController::class);
-    Route::resource('user', UserController::class)->only(['index', 'show']);
-    Route::get('/roles', function(){
-        return view('role');
-    })->name('role');
+    Route::middleware(['admin'])->group(function(){
+        Route::get('user', [UserController::class, 'index'])->name('user.index');
+        Route::resource('job', JobController::class)->except(['index', 'show']);
+    });
+    Route::get('user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::resource('job', JobController::class)->only(['index', 'show']);
+    // Route::get('/roles', function(){
+    //     return view('role');
+    // })->name('role');
 });

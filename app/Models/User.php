@@ -63,4 +63,9 @@ class User extends Authenticatable
     public function jobs(){
         return $this->belongsToMany(Job::class)->withTimestamps();
     }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 }

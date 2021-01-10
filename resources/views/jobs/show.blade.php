@@ -23,10 +23,19 @@
                                     <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
                                         {{$job->body}}
                                     </p>
-                                    @livewire('apply-for-jobs', ['slug' => $job->slug])
+                                    @if(!(Auth::user()->isAdmin()))
+                                        @if($job->status)
+                                            @livewire('apply-for-jobs', ['slug' => $job->slug])
+                                        @else
+                                        <p class="p-4 my-2 bg-red-50">
+                                            Sorry !! This job is no longer available.
+                                        </p>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </section>
+                        @if((Auth::user()->isAdmin()))
                         <div class="p-4 bg-gray-50">
                             <h2 class="text-bold text-xl">List of users applied for the job</h2>
                             @if(count($job->users) > 0)
@@ -41,7 +50,7 @@
                             No User applied for the job yet !!
                             @endif
                         </div>
-
+                        @endif
                         @endforeach
                     </div>
                 </div>

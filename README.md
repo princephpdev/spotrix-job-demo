@@ -13,3 +13,9 @@
 - Admin can create roles
 - Admin can see job wise application
 - Admin can download CV
+
+## Few steps about project
+- Create User as Normal User
+- Create Role as Admin
+- Assign User as Admin using role_user
+-- Now you have all the powers of admin you want

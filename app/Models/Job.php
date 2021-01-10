@@ -20,4 +20,9 @@ class Job extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function checkStatus()
+    {
+        return $this->status;
+    }
 }

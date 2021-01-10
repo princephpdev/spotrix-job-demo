@@ -26,7 +26,9 @@ class SearchJobs extends Component
     {
         $this->resetErrorBag();
         $this->validate();
-        $this->jobs = Job::where('title', 'like', '%'.$this->search.'%')->get();
+        $this->jobs = Job::where('title', 'like', '%'.$this->search.'%')
+        ->where('status' , 1)
+        ->get();
         $this->reset('search');
         if(count($this->jobs) < 1){
             session()->flash('message', 'No Data found.');

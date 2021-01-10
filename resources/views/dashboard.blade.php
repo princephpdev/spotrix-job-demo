@@ -7,7 +7,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                @livewire('search-jobs')
+            @if (session('error'))
+            <p class="p-4 my-2 bg-red-50">
+                {{ session('error') }}
+            </p>
+            @endif
+            @livewire('search-jobs')
         </div>
     </div>
 </x-app-layout>

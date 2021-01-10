@@ -18,12 +18,15 @@
                     <x-jet-nav-link href="{{ route('job.index') }}" :active="request()->routeIs('job.index')">
                         {{ __('Jobs') }}
                     </x-jet-nav-link>
+                    @if(Auth::user()->isAdmin())
                     <x-jet-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
                         {{ __('Applicants') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('role') }}" :active="request()->routeIs('role')">
-                        {{ __('Roles') }}
+                    @else
+                    <x-jet-nav-link href="{{ route('user.show', Auth::user()->email) }}" :active="request()->routeIs('user.show')">
+                        {{ __('Applied Jobs') }}
                     </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 
