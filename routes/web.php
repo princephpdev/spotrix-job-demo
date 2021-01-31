@@ -18,7 +18,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     });
     Route::get('user/{user}', [UserController::class, 'show'])->name('user.show');
     Route::resource('job', JobController::class)->only(['index', 'show']);
-    // Route::get('/roles', function(){
-    //     return view('role');
-    // })->name('role');
 });
