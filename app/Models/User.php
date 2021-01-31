@@ -61,6 +61,11 @@ class User extends Authenticatable
         'profile_photo_url',
         // 'resume_path'
     ];
+    /**
+     * The gaurd name property should be defined here
+     */
+
+    protected $guard_name = ['sanctum'];
 
     public function jobs(){
         return $this->belongsToMany(Job::class)->withTimestamps();

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PersonController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,7 +10,9 @@ Route::get('/', function(){
     return view('home');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){    
+    Route::resource('person', PersonController::class);
+    Route::resource('role', RoleController::class)->middleware('can:role-list, role');
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');

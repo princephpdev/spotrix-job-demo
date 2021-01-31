@@ -18,7 +18,13 @@
                     <x-jet-nav-link href="{{ route('job.index') }}" :active="request()->routeIs('job.index')">
                         {{ __('Jobs') }}
                     </x-jet-nav-link>
-                    @if(Auth::user()->isAdmin())
+                    <x-jet-nav-link href="{{ route('person.index') }}" :active="request()->routeIs('person.index')">
+                        {{ __('Persons') }}
+                    </x-jet-nav-link>
+                    @role('Admin')
+                    <x-jet-nav-link href="{{ route('role.index') }}" :active="request()->routeIs('role.index')">
+                        {{ __('Roles') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
                         {{ __('Applicants') }}
                     </x-jet-nav-link>
@@ -26,7 +32,7 @@
                     <x-jet-nav-link href="{{ route('user.show', Auth::user()->email) }}" :active="request()->routeIs('user.show')">
                         {{ __('Applied Jobs') }}
                     </x-jet-nav-link>
-                    @endif
+                    @endrole
                 </div>
             </div>
 
